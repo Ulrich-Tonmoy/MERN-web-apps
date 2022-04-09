@@ -34,8 +34,10 @@ export default function Post({ post, setCurrentId }) {
                 {post.title}
             </Typography>
             <CardContent>
-                <Typography variant="h5" gutterBottom>
-                    {post.message}
+                <Typography variant="body2" color="textSecondary" component="p">
+                    {post.message.length > 70
+                        ? `${post.message.substring(0, 70)}...`
+                        : post.message}
                 </Typography>
             </CardContent>
             <CardActions className={classes.cardActions}>
