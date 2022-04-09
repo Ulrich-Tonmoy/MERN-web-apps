@@ -3,7 +3,7 @@ import { Delete, MoreHoriz, ThumbUp } from "@material-ui/icons";
 import useStyles from "./styles";
 import moment from "moment";
 
-export default function Post({ post }) {
+export default function Post({ post, setCurrentId }) {
     const classes = useStyles();
 
     return (
@@ -14,8 +14,12 @@ export default function Post({ post }) {
                 <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
             </div>
             <div className={classes.overlay2}>
-                <Button style={{ color: "white" }} size="small" onClick={() => {}}>
-                    <MoreHoriz fontSize="default" />
+                <Button
+                    style={{ color: "white" }}
+                    size="small"
+                    onClick={() => setCurrentId(post._id)}
+                >
+                    <MoreHoriz fontSize="medium" />
                 </Button>
             </div>
             <div className={classes.details}>
@@ -23,8 +27,11 @@ export default function Post({ post }) {
                     {post.tags.map((tag) => `#${tag}`)}
                 </Typography>
             </div>
+            <Typography className={classes.title} variant="h5" gutterBottom>
+                {post.title}
+            </Typography>
             <CardContent>
-                <Typography className={classes.title} variant="h5" gutterBottom>
+                <Typography variant="h5" gutterBottom>
                     {post.message}
                 </Typography>
             </CardContent>
