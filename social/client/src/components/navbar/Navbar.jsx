@@ -39,7 +39,7 @@ export default function Navbar() {
                         </Button>
                     </div>
                 ) : (
-                    <Button component={Link} to="/auth" variant="contained" color="secondary">
+                    <Button component={Link} to="/auth" variant="contained" color="primary">
                         Login
                     </Button>
                 )}
