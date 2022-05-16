@@ -10,7 +10,7 @@ export const login = async (req, res) => {
         const existingUser = await User.findOne({ email });
         if (!existingUser) return res.status(404).json({ message: "User does not exist" });
 
-        const isPasswordConfirmed = await bcrypt.compare(passowrd, existingUser.password);
+        const isPasswordConfirmed = await bcrypt.compare(password, existingUser.password);
         if (!isPasswordConfirmed) return res.status(400).json({ message: "Invalid Password" });
 
         const token = jwt.sign({ email: existingUser.email, id: existingUser._id }, "social", {

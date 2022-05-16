@@ -42,9 +42,11 @@ export default function Navbar() {
                     variant="h2"
                     align="center"
                 >
-                    Social
+                    Social Blog
                 </Typography>
-                <img className={classes.image} src={social} alt="social" height="60" />
+                <Link to="/">
+                    <img className={classes.image} src={social} alt="social" height="60" />
+                </Link>
             </div>
             <Toolbar className={classes.toolbar}>
                 {user ? (
