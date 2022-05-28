@@ -6,8 +6,14 @@ import { Link } from "react-router-dom";
 import { getPosts } from "../actions/posts";
 import useStyles from "./styles";
 
-export default function Paginate() {
+export default function Paginate({ page }) {
     const classes = useStyles();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (page) dispatch(getPosts(page));
+    }, [page, dispatch]);
+
     return (
         <Pagination
             classes={{ ul: classes.ul }}

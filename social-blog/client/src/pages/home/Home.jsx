@@ -21,10 +21,6 @@ export default function Home() {
     const [search, setSearch] = useState("");
     const [tags, setTags] = useState([]);
 
-    useEffect(() => {
-        dispatch(getPosts());
-    }, [currentId, dispatch]);
-
     const handleKeyPress = (e) => {
         if (e.keycode === 13) {
             searchPost();
@@ -87,7 +83,7 @@ export default function Home() {
                         </AppBar>
                         <Form currentId={currentId} setCurrentId={setCurrentId} />
                         <Paper className={classes.pagination} elevation={6}>
-                            <Pagination />
+                            <Pagination page={page} />
                         </Paper>
                     </Grid>
                 </Grid>
