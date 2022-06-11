@@ -9,7 +9,7 @@ export default function Form({ currentId, setCurrentId }) {
     const classes = useStyles();
     const dispatch = useDispatch();
     const post = useSelector((state) =>
-        currentId ? state.posts.find((p) => p._id === currentId) : null
+        currentId ? state.posts.posts.find((p) => p._id === currentId) : null
     );
 
     const user = JSON.parse(localStorage.getItem("profile"));
@@ -52,7 +52,7 @@ export default function Form({ currentId, setCurrentId }) {
     }
 
     return (
-        <Paper className={classes.paper}>
+        <Paper className={classes.paper} elevation={6}>
             <form noValidate className={`${classes.form} ${classes.root}`} onSubmit={handleSubmit}>
                 <Typography variant="h6">{currentId ? "Editing" : "Creating"} a Post</Typography>
                 <TextField
@@ -70,6 +70,7 @@ export default function Form({ currentId, setCurrentId }) {
                     fullWidth
                     multiline
                     minRows={4}
+                    maxRows={10}
                     value={postData.message}
                     onChange={(e) => setPostData({ ...postData, message: e.target.value })}
                 />

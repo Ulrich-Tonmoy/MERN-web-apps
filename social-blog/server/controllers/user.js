@@ -38,7 +38,7 @@ export const singup = async (req, res) => {
             name: fullName,
         });
 
-        const token = jwt.sign({ email: existingUser.email, id: existingUser._id }, "social", {
+        const token = jwt.sign({ email: result.email, id: result._id }, "social", {
             expiresIn: "2d",
         });
 
