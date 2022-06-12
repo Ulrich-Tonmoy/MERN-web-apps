@@ -1,7 +1,7 @@
 import useStyles from "./styles";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { CircularProgress, Divider, Paper, Typography } from "@material-ui/core";
+import { Card, CircularProgress, Divider, Paper, Typography } from "@material-ui/core";
 import moment from "moment";
 import CommentSection from "./CommentSection";
 import { useEffect } from "react";
@@ -41,6 +41,16 @@ export default function PostDetails() {
 
     return (
         <Paper style={{ padding: "20px", borderRadius: "15px" }} elevation={6}>
+            <div className={classes.imageSection}>
+                <img
+                    className={classes.media}
+                    src={
+                        post.selectedFile ||
+                        "https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"
+                    }
+                    alt={post.title}
+                />
+            </div>
             <div className={classes.card}>
                 <div className={classes.section}>
                     <Typography variant="h3" component="h2">
@@ -78,16 +88,6 @@ export default function PostDetails() {
                     <CommentSection post={post} />
                     <Divider style={{ margin: "20px 0" }} />
                 </div>
-                <div className={classes.imageSection}>
-                    <img
-                        className={classes.media}
-                        src={
-                            post.selectedFile ||
-                            "https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"
-                        }
-                        alt={post.title}
-                    />
-                </div>
             </div>
             {recommendedPosts?.length && (
                 <div className={classes.section}>
@@ -98,25 +98,38 @@ export default function PostDetails() {
                     <div className={classes.recommendedPosts}>
                         {recommendedPosts?.map(
                             ({ title, message, name, likes, selectedFile, _id }) => (
-                                <div
-                                    style={{ margin: "20px", cursor: "pointer" }}
+                                <Card
+                                    raised
+                                    elevation={6}
+                                    style={{
+                                        margin: "20px",
+                                        padding: "10px",
+                                        cursor: "pointer",
+                                        maxWidth: "250px",
+                                    }}
                                     onClick={() => openPost(_id)}
                                     key={_id}
                                 >
-                                    <Typography gutterBottom variant="h6">
+                                    <Typography
+                                        gutterBottom
+                                        variant="h6"
+                                        style={{ fontWeight: 600 }}
+                                    >
                                         {title}
                                     </Typography>
                                     <Typography gutterBottom variant="subtitle2">
-                                        {name}
+                                        Created by: {name}
                                     </Typography>
                                     <Typography gutterBottom variant="subtitle2">
-                                        {message}
+                                        {message.length > 70
+                                            ? `${message.substring(0, 70)}...`
+                                            : message}
                                     </Typography>
                                     <Typography gutterBottom variant="subtitle1">
                                         Likes: {likes.length}
                                     </Typography>
                                     <img src={selectedFile} alt={title} width="200px" />
-                                </div>
+                                </Card>
                             )
                         )}
                     </div>
