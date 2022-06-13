@@ -1,6 +1,6 @@
 # e-com
 
-MERN E-commerce site with RestAPI.In this Webapp user can order Clothes. There are 2 main types of users. Which are Buyer and Seller/Admin.
+MERN E-commerce site with RestAPI.In this Webapp user can order Clothes. There are 2 main types of users. Which are Buyer and Seller/Admin and theres two frontend app one for normal user or buyer and other for admin with sales info.
 Buyer:- They can search for any product and add them to the cart with quantity. Then they can Order. They can confirm the order and can pay with stripe but they have to login first. If the payment is done this order then order information will store in the Database.
 Seller/Admin:- Can add more Admin or Moderator to manage the website can add new products or delete products, change the old products information such as availability, quantity, image, price etc. Admin has access to the dash board where a graph show the revenue, sales information.
 
