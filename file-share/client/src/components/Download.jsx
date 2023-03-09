@@ -29,7 +29,7 @@ const Download = () => {
 
     const downloadFile = async () => {
         setIsLoading(true);
-        await fetchFileWithPassword(id, password)
+        await fetchFileWithPassword(id, { password: password })
             .then((res) => {
                 console.log(res);
 
@@ -44,9 +44,15 @@ const Download = () => {
             })
             .catch((err) => {
                 console.log(err);
-                setErrMsg(err?.response?.data?.err);
+                setErrMsg("Incorrect password!");
                 setIsLoading(false);
             });
+    };
+
+    const handleSubmit = () => {
+        if (isPassword && password === "")
+            setErrMsg("Please provide the password to download the file!");
+        else downloadFile();
     };
 
     useEffect(() => {
@@ -59,12 +65,25 @@ const Download = () => {
             {isLoading && <Loader />}
 
             <div className="download-container">
-                {errMsg && <div style={{ color: "red", fontSize: "26px" }}>{errMsg}</div>}
+                {errMsg && (
+                    <div
+                        style={{
+                            color: "red",
+                            fontSize: "22px",
+                            paddingBottom: "25px",
+                        }}
+                    >
+                        {errMsg}
+                    </div>
+                )}
                 {isPassword && (
                     <div>
                         <input
                             type="password"
-                            onChange={(e) => setPassword(e.target.value)}
+                            onChange={(e) => {
+                                setPassword(e.target.value);
+                                setErrMsg("");
+                            }}
                             placeholder="Password"
                         />
                     </div>
@@ -75,7 +94,7 @@ const Download = () => {
                             <p>{fileResponse?.fileName}</p>
                         </div>
                         <div>
-                            <button onClick={() => downloadFile()}>Download</button>
+                            <button onClick={() => handleSubmit()}>Download</button>
                         </div>
                     </>
                 )}

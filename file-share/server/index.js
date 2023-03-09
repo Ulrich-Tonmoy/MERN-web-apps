@@ -3,18 +3,19 @@ import express from "express";
 import cors from "cors";
 import multer from "multer";
 import mongoose from "mongoose";
+import bodyParser from "body-parser";
 
 import { getFile, handleDownload, uploadFile } from "./controller/file.js";
 
 const upload = multer({ dest: "uploads" });
 const app = express();
 
+app.use(bodyParser.json({ limit: "30mb", extended: true }));
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 app.post("/file/upload", upload.single("file"), uploadFile);
 app.route("/file/:id").get(getFile).post(handleDownload);
-// app.get("/file/:id", getFile);
-// app.post("/file/:id", handleDownload);
 
 const PORT = process.env.PORT || 5000;
 

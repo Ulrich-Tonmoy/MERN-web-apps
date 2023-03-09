@@ -48,15 +48,9 @@ export const getFile = async (req, res) => {
 
 export const handleDownload = async (req, res) => {
     const file = await File.findById(req.params.id);
-    console.log(req.body);
-    if (file.password != null) {
-        if (req.body.password === null) {
-            res.status(400).json({
-                err: "This file is password protected so need a password!",
-            });
-        }
 
-        if (!(await bcrypt.compare(req?.body?.password, file.password))) {
+    if (file.password != null) {
+        if (!(await bcrypt.compare(req.body.password, file.password))) {
             res.status(400).json({
                 err: "Incorrect password!",
             });
