@@ -1,4 +1,4 @@
-import { ProfileCard, SearchSection } from "..";
+import { FollowersCard, ProfileCard, SearchSection } from "..";
 import "./LeftSection.css";
 
 const LeftSection = () => {
@@ -6,6 +6,7 @@ const LeftSection = () => {
     <div className="left-section">
       <SearchSection />
       <ProfileCard />
+      <FollowersCard />
     </div>
   );
 };
