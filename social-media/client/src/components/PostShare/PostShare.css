@@ -1,0 +1,82 @@
+.post-share {
+  display: flex;
+  gap: 1rem;
+  background-color: var(--cardColor);
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.post-share > img {
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+}
+
+.post-share > div {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  gap: 1rem;
+}
+
+.post-share > div > input {
+  background-color: var(--inputColor);
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 17px;
+  border: none;
+  outline: none;
+}
+
+.post-options {
+  display: flex;
+  justify-content: space-around;
+}
+
+.option {
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.option > svg {
+  padding-right: 0.3rem;
+}
+
+.option:hover {
+  cursor: pointer;
+}
+
+.post-share__button {
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 12px;
+}
+
+.preview-image {
+  position: relative;
+}
+
+.preview-image > svg {
+  position: absolute;
+  right: 1rem;
+  top: 0.5rem;
+  font-size: 1.5rem;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+}
+
+.preview-image > img {
+  width: 100%;
+  max-height: 20rem;
+  object-fit: contain;
+  border-radius: 0.5rem;
+}
