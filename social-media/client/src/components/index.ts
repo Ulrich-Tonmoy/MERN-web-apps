@@ -12,3 +12,4 @@ export { default as InfoCard } from "./InfoCard/InfoCard";
 export { default as Login } from "./Login/Login";
 export { default as SignUp } from "./SignUp/SignUp";
 export { default as ProfileModal } from "./ProfileModal/ProfileModal";
+export { default as ShareModal } from "./ShareModal/ShareModal";

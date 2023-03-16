@@ -2,6 +2,7 @@ import { AiFillHome, AiOutlineBell, AiOutlineMessage, AiOutlineSetting } from "r
 import "./RightSection.css";
 import { TrendCard } from "..";
 import { useState } from "react";
+import { ShareModal } from "..";
 
 const RightSection = () => {
   const [modalOpened, setModalOpened] = useState<Boolean>(false);
@@ -18,7 +19,7 @@ const RightSection = () => {
       <button className="button right-button" onClick={() => setModalOpened(true)}>
         Share
       </button>
-      {/* <ShareModal modalOpened={modalOpened} setModalOpened={setModalOpened} /> */}
+      <ShareModal modalOpened={modalOpened} setModalOpened={setModalOpened} />
     </div>
   );
 };
