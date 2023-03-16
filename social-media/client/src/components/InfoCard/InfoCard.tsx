@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AiOutlineEdit } from "react-icons/ai";
 import "./InfoCard.css";
+import { ProfileModal } from "..";
 
 const InfoCard = () => {
   const [modalOpened, setModalOpened] = useState<Boolean>(false);
@@ -13,7 +14,7 @@ const InfoCard = () => {
             style={{ width: "2rem", height: "1.5rem" }}
             onClick={() => setModalOpened(true)}
           />
-          {/* <ProfileModal modalOpened={modalOpened} setModalOpened={setModalOpened} /> */}
+          <ProfileModal modalOpened={modalOpened} setModalOpened={setModalOpened} />
         </div>
       </div>
       <div className="info">
@@ -32,7 +33,7 @@ const InfoCard = () => {
         <span>
           <b>Works at </b>
         </span>
-        <span>Zainkeepscode inst</span>
+        <span>Private Limited</span>
       </div>
       <button className="button logout-button">Logout</button>
     </div>
