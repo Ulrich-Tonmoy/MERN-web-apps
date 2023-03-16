@@ -9,3 +9,5 @@ export { default as RightSection } from "./RightSection/RightSection";
 export { default as TrendCard } from "./TrendCard/TrendCard";
 export { default as ProfileLeft } from "./ProfileLeft/ProfileLeft";
 export { default as InfoCard } from "./InfoCard/InfoCard";
+export { default as Login } from "./Login/Login";
+export { default as SignUp } from "./SignUp/SignUp";
