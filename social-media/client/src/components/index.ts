@@ -7,3 +7,5 @@ export { default as PostShare } from "./PostShare/PostShare";
 export { default as Posts } from "./Posts/Posts";
 export { default as RightSection } from "./RightSection/RightSection";
 export { default as TrendCard } from "./TrendCard/TrendCard";
+export { default as ProfileLeft } from "./ProfileLeft/ProfileLeft";
+export { default as InfoCard } from "./InfoCard/InfoCard";
