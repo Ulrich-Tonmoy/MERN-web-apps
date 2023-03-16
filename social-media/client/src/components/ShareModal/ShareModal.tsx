@@ -10,6 +10,7 @@ const ShareModal = ({ modalOpened, setModalOpened }: any) => {
         opacity: 0.55,
         blur: 3,
       }}
+      title="Share Your Thought"
       size="55%"
       opened={modalOpened}
       onClose={() => setModalOpened(false)}
