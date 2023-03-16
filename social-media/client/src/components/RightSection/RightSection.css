@@ -1,0 +1,29 @@
+.right-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.nav-icons {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-icons > svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-icon:hover {
+  cursor: pointer;
+  background-color: var(--cardColor);
+}
+
+.right-button {
+  height: 3rem;
+  width: 80%;
+  align-self: center;
+}

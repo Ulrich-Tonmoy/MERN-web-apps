@@ -1,4 +1,4 @@
-import { LeftSection, PostSection } from "../../components";
+import { LeftSection, PostSection, RightSection } from "../../components";
 import "./Home.css";
 
 const Home = () => {
@@ -6,7 +6,7 @@ const Home = () => {
     <div className="home">
       <LeftSection />
       <PostSection />
-      <div className="right-bar">Right</div>
+      <RightSection />
     </div>
   );
 };
