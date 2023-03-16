@@ -1,0 +1,32 @@
+.post {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: var(--cardColor);
+  border-radius: 1rem;
+  gap: 1rem;
+}
+
+.post > img {
+  width: 100%;
+  max-height: 20rem;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.post-react {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.post-react__icons {
+  font-size: 1.8rem;
+  padding: 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+.post-react__icons:hover {
+  cursor: pointer;
+  background-color: var(--hrColor);
+}

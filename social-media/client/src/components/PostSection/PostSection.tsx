@@ -1,10 +1,11 @@
 import "./PostSection.css";
-import { PostShare } from "..";
+import { Posts, PostShare } from "..";
 
 const PostSection = () => {
   return (
     <div className="post-section">
       <PostShare />
+      <Posts />
     </div>
   );
 };
