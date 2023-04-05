@@ -6,11 +6,11 @@ export const register = async (req: Request, res: Response) => {
 
   const emailAlreadyExists = await UserModel.findOne({ email });
   if (emailAlreadyExists) {
-    res.status(400).json({ message: "Email already exists" });
+    return res.status(400).json({ message: "Email already exists" });
   }
   const usernameAlreadyExists = await UserModel.findOne({ username });
   if (usernameAlreadyExists) {
-    res.status(400).json({ message: "UserName already exists" });
+    return res.status(400).json({ message: "UserName already exists" });
   }
 
   const newUser = new UserModel({ username, password, email, fullName });
