@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import morgan from "morgan";
@@ -6,6 +6,9 @@ import * as dotenv from "dotenv";
 import mongoose, { ConnectOptions } from "mongoose";
 
 import { authRoutes } from "./routes";
+
+import notFoundMiddleware from "./middleware/not-found";
+import errorHandlerMiddleware from "./middleware/error-handler";
 
 dotenv.config();
 const app = express();
@@ -16,11 +19,10 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors({ origin: "http://localhost:3000/" }));
 app.use(morgan("combined"));
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World!");
-});
-
 app.use("/api/v1/auth", authRoutes);
+
+app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
 
 const options = {
   useNewUrlParser: true,
