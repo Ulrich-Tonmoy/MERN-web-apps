@@ -1,5 +1,5 @@
 const createTokenUser = (user) => {
-  return { name: user.name, userId: user._id, role: user.role };
+  return { name: user.username, userId: user._id, email: user.email };
 };
 
 export default createTokenUser;
