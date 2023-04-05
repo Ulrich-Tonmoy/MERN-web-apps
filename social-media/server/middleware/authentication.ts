@@ -1,4 +1,4 @@
-import { isTokenValid } from "../utils";
+import { isTokenValid } from "utils";
 
 const authenticateUser = async (req, res, next) => {
   const token = req.signedCookies.token;
