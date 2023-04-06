@@ -4,7 +4,7 @@ import cors from "cors";
 import * as dotenv from "dotenv";
 import mongoose, { ConnectOptions } from "mongoose";
 
-import { authRoutes, userRoutes } from "./routes";
+import { authRoutes, userRoutes, postRoutes } from "./routes";
 
 dotenv.config();
 const app = express();
@@ -16,6 +16,7 @@ app.use(cors({ origin: "http://localhost:3000/" }));
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/post", postRoutes);
 
 const options = {
   useNewUrlParser: true,
