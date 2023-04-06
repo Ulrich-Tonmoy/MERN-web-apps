@@ -7,11 +7,11 @@ export const register = async (req: Request, res: Response) => {
 
   const emailAlreadyExists = await UserModel.findOne({ email });
   if (emailAlreadyExists) {
-    return res.status(400).json({ message: "Email already exists" });
+    return res.status(400).json({ response: "Email already exists" });
   }
   const usernameAlreadyExists = await UserModel.findOne({ username });
   if (usernameAlreadyExists) {
-    return res.status(400).json({ message: "UserName already exists" });
+    return res.status(400).json({ response: "UserName already exists" });
   }
 
   const salt = await bcrypt.genSalt(10);
@@ -20,9 +20,9 @@ export const register = async (req: Request, res: Response) => {
 
   try {
     await newUser.save();
-    res.status(201).json({ user: newUser });
+    res.status(201).json({ response: newUser });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ response: error.message });
   }
 };
 
@@ -39,11 +39,13 @@ export const login = async (req: Request, res: Response) => {
 
     if (user) {
       const validity = await bcrypt.compare(password, user.password);
-      validity ? res.status(200).json(user) : res.status(400).json("Wrong Password");
+      validity
+        ? res.status(200).json({ response: user })
+        : res.status(400).json({ response: "Wrong Password" });
     } else {
-      res.status(404).json("User does not exists");
+      res.status(404).json({ response: "User does not exists" });
     }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ response: error.message });
   }
 };
