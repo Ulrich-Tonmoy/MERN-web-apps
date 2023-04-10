@@ -1,5 +1,5 @@
 import { FollowersCard, ProfileCard, SearchSection } from "@/components";
-import "@/components/LeftSection/LeftSection.css";
+import "./LeftSection.css";
 
 const LeftSection = () => {
   return (

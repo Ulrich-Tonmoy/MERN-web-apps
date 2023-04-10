@@ -1,5 +1,5 @@
 import { TrendData } from "@/data/TrendData";
-import "@/components/TrendCard/TrendCard.css";
+import "./TrendCard.css";
 
 const TrendCard = () => {
   return (

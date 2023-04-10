@@ -1,4 +1,4 @@
-import "@/components/ProfileLeft/ProfileLeft.css";
+import "./ProfileLeft.css";
 import { FollowersCard, InfoCard, SearchSection } from "@/components";
 
 const ProfileLeft = () => {

@@ -1,4 +1,4 @@
-import "@/components/ProfileCard/ProfileCard.css";
+import "./ProfileCard.css";
 
 const ProfileCard = () => {
   const ProfilePage = true;

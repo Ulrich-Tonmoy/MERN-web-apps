@@ -1,6 +1,6 @@
 import { PostsData } from "@/data/PostsData";
 import { Post } from "@/components/Posts/Post/Post";
-import "@/components/Posts/Posts.css";
+import "./Posts.css";
 
 const Posts = () => {
   return (

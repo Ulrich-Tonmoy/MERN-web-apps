@@ -1,5 +1,5 @@
 import { AiFillHome, AiOutlineBell, AiOutlineMessage, AiOutlineSetting } from "react-icons/ai";
-import "@/components/RightSection/RightSection.css";
+import "./RightSection.css";
 import { useState } from "react";
 import { ShareModal, TrendCard } from "@/components";
 

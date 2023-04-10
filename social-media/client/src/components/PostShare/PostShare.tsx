@@ -2,7 +2,7 @@ import { BsCardImage } from "react-icons/bs";
 import { GoLocation } from "react-icons/go";
 import { SlCalender } from "react-icons/sl";
 import { AiOutlinePlayCircle, AiOutlineClose } from "react-icons/ai";
-import "@/components/PostShare/PostShare.css";
+import "./PostShare.css";
 import { ChangeEvent, useRef, useState } from "react";
 
 export interface Image {

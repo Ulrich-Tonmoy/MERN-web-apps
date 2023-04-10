@@ -1,5 +1,5 @@
 import { BsSearch } from "react-icons/bs";
-import "@/components/SearchSection/SearchSection.css";
+import "./SearchSection.css";
 
 const SearchSection = () => {
   return (

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AiOutlineEdit } from "react-icons/ai";
-import "@/components/InfoCard/InfoCard.css";
+import "./InfoCard.css";
 import { ProfileModal } from "@/components";
 
 const InfoCard = () => {

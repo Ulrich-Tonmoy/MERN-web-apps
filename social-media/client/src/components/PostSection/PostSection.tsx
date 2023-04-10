@@ -1,4 +1,4 @@
-import "@/components/PostSection/PostSection.css";
+import "./PostSection.css";
 import { Posts, PostShare } from "@/components";
 
 const PostSection = () => {
