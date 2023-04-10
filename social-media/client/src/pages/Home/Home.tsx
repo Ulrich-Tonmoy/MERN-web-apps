@@ -1,5 +1,5 @@
-import { LeftSection, PostSection, RightSection } from "../../components";
-import "./Home.css";
+import { LeftSection, PostSection, RightSection } from "@/components";
+import "@/pages/Home/Home.css";
 
 const Home = () => {
   return (

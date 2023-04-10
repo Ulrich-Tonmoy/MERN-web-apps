@@ -1,3 +1,3 @@
-export { default as Home } from "./Home/Home";
-export { default as Profile } from "./Profile/Profile";
-export { default as Auth } from "./Auth/Auth";
+export { default as Home } from "@/pages/Home/Home";
+export { default as Profile } from "@/pages/Profile/Profile";
+export { default as Auth } from "@/pages/Auth/Auth";

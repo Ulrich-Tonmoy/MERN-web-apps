@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AiOutlineEdit } from "react-icons/ai";
-import "./InfoCard.css";
-import { ProfileModal } from "..";
+import "@/components/InfoCard/InfoCard.css";
+import { ProfileModal } from "@/components";
 
 const InfoCard = () => {
   const [modalOpened, setModalOpened] = useState<Boolean>(false);

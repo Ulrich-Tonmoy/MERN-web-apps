@@ -1,5 +1,5 @@
-import "./PostSection.css";
-import { Posts, PostShare } from "..";
+import "@/components/PostSection/PostSection.css";
+import { Posts, PostShare } from "@/components";
 
 const PostSection = () => {
   return (

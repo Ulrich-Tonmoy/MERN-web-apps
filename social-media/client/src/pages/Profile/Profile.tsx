@@ -1,5 +1,5 @@
-import { PostSection, ProfileCard, ProfileLeft, RightSection } from "../../components";
-import "./Profile.css";
+import { PostSection, ProfileCard, ProfileLeft, RightSection } from "@/components";
+import "@/pages/Profile/Profile.css";
 
 const Profile = () => {
   return (

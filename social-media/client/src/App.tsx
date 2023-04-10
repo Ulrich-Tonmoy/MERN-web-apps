@@ -1,4 +1,4 @@
-import { Auth, Home, Profile } from "./pages";
+import { Auth, Home, Profile } from "@/pages";
 const App = () => {
   return (
     <div className="app">

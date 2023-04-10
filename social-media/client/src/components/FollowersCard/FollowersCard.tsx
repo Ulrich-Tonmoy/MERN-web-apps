@@ -1,5 +1,5 @@
-import { Followers } from "../../data/FollowersData";
-import "./FollowersCard.css";
+import { Followers } from "@/data/FollowersData";
+import "@/components/FollowersCard/FollowersCard.css";
 
 const FollowersCard = () => {
   return (

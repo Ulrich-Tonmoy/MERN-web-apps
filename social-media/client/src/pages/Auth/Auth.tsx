@@ -1,5 +1,5 @@
-import { Login } from "../../components";
-import "./Auth.css";
+import { Login } from "@/components";
+import "@/pages/Auth/Auth.css";
 
 const Auth = () => {
   return (

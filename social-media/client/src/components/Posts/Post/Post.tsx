@@ -1,5 +1,5 @@
 import { AiFillHeart, AiOutlineHeart, AiOutlineMessage, AiOutlineSend } from "react-icons/ai";
-import "./Post.css";
+import "@/components/Posts/Post/Post.css";
 
 export const Post = ({ data }: any) => {
   return (

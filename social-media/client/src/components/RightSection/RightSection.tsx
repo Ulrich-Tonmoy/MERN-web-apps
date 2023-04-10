@@ -1,8 +1,7 @@
 import { AiFillHome, AiOutlineBell, AiOutlineMessage, AiOutlineSetting } from "react-icons/ai";
-import "./RightSection.css";
-import { TrendCard } from "..";
+import "@/components/RightSection/RightSection.css";
 import { useState } from "react";
-import { ShareModal } from "..";
+import { ShareModal, TrendCard } from "@/components";
 
 const RightSection = () => {
   const [modalOpened, setModalOpened] = useState<Boolean>(false);

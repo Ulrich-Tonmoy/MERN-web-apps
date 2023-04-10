@@ -1,13 +1,13 @@
-import { TrendData } from "../../data/TrendData";
-import "./TrendCard.css";
+import { TrendData } from "@/data/TrendData";
+import "@/components/TrendCard/TrendCard.css";
 
 const TrendCard = () => {
   return (
     <div className="trend-card">
       <h3>Trends for you</h3>
-      {TrendData.map((trend) => {
+      {TrendData.map((trend, i) => {
         return (
-          <div className="trend">
+          <div className="trend" key={i}>
             <span>#{trend.name}</span>
             <span>{trend.shares}k shares</span>
           </div>
