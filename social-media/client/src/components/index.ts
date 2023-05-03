@@ -9,7 +9,5 @@ export { default as RightSection } from "@/components/RightSection/RightSection"
 export { default as TrendCard } from "@/components/TrendCard/TrendCard";
 export { default as ProfileLeft } from "@/components/ProfileLeft/ProfileLeft";
 export { default as InfoCard } from "@/components/InfoCard/InfoCard";
-export { default as Login } from "@/components/Login/Login";
-export { default as SignUp } from "@/components/SignUp/SignUp";
 export { default as ProfileModal } from "@/components/ProfileModal/ProfileModal";
 export { default as ShareModal } from "@/components/ShareModal/ShareModal";

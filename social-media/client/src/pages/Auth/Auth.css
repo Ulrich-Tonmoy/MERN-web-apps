@@ -36,6 +36,7 @@
   /* Use the text as a mask for the background. */
   /* This will show the gradient as a text color rather than element bg. */
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-background-clip: text;
   -moz-text-fill-color: transparent;
@@ -45,15 +46,23 @@
   font-size: 0.85rem;
 }
 
-.info-form {
+.auth-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  background-color: var(--cardColor);
+  border-radius: 1rem;
+  padding: 1rem;
+  min-width: 28.25rem;
+  min-height: 25.75rem;
+  box-shadow: 0px 0px 10px 4px rgba(252, 166, 31, 1) inset;
+  -webkit-box-shadow: 0px 0px 10px 4px rgba(252, 166, 31, 1) inset;
+  -moz-box-shadow: 0px 0px 10px 4px rgba(252, 166, 31, 1) inset;
 }
 
-.info-input {
+.auth-input {
   border: none;
   outline: none;
   background-color: var(--inputColor);
@@ -62,27 +71,43 @@
   flex: 1;
 }
 
-.info-form > div {
+.auth-form > div {
   display: flex;
   gap: 1rem;
   height: 2rem;
-  width: 90%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
-.info-button {
+.auth-button {
   width: 6rem;
   height: 2rem;
   align-self: flex-end;
 }
 
-.info-form {
-  background-color: var(--cardColor);
-  border-radius: 1rem;
-  padding: 1rem;
+.auth-link {
+  color: blue;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
-.info-form > div {
-  width: 100%;
-  align-items: center;
-  justify-content: center;
+@media screen and (max-width: 1024px) {
+  .auth {
+    flex-direction: column;
+    height: auto;
+  }
+  .auth-form {
+    min-width: 75vw;
+    min-height: auto;
+    row-gap: 4.5rem;
+  }
+  .auth-form > div {
+    flex-direction: column;
+  }
+
+  .auth-input {
+    width: 80%;
+  }
 }
