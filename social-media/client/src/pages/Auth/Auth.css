@@ -24,7 +24,6 @@
 
 .web-name > h1 {
   font-size: 3rem;
-  background-color: red;
 
   /* Create the gradient. */
   background-image: var(--buttonBg);
@@ -62,15 +61,6 @@
   -moz-box-shadow: 0px 0px 10px 4px rgba(252, 166, 31, 1) inset;
 }
 
-.auth-input {
-  border: none;
-  outline: none;
-  background-color: var(--inputColor);
-  border-radius: 8px;
-  padding: 20px;
-  flex: 1;
-}
-
 .auth-form > div {
   display: flex;
   gap: 1rem;
@@ -84,6 +74,11 @@
   width: 6rem;
   height: 2rem;
   align-self: flex-end;
+}
+
+.auth-button:disabled {
+  background: silver;
+  pointer-events: none;
 }
 
 .auth-link {
@@ -105,9 +100,5 @@
   }
   .auth-form > div {
     flex-direction: column;
-  }
-
-  .auth-input {
-    width: 80%;
   }
 }

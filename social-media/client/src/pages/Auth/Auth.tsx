@@ -1,49 +1,67 @@
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 import "./Auth.css";
 import { useState, ChangeEvent, SyntheticEvent } from "react";
+import CustomInput from "@/components/CustomInput/CustomInput";
+import { useDispatch, useSelector } from "react-redux";
+import { authStart, authSuccess, authFail } from "@/feature/authSlice";
+import { signUp, logIn } from "@/apis/auth";
 
 interface InitialState {
-  firstName: string;
-  lastName: string;
+  fullName: string;
   username: string;
+  email: string;
   password: string;
   confirmPass: string;
 }
 
 const Auth = () => {
   const initialState = {
-    firstName: "",
-    lastName: "",
+    fullName: "",
     username: "",
+    email: "",
     password: "",
     confirmPass: "",
   };
+  const { loading, error } = useSelector((store: any) => store.auth);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isSignUp, setIsSignUp] = useState(false);
   const [confirmPass, setConfirmPass] = useState(true);
-  const [data, setData] = useState<InitialState>(initialState);
+  const [formData, setFormData] = useState<InitialState>(initialState);
 
   const resetForm = () => {
-    setData(initialState);
+    setFormData(initialState);
     setConfirmPass(true);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setData({ ...data, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: SyntheticEvent) => {
+  const handleSubmit = async (e: SyntheticEvent) => {
     setConfirmPass(true);
     e.preventDefault();
-    console.log(data);
     if (isSignUp) {
-      data.password === data.confirmPass
-        ? // dispatch(signUp(data, navigate))
-          setConfirmPass(true)
-        : setConfirmPass(false);
+      if (formData.password === formData.confirmPass) {
+        dispatch(authStart());
+        try {
+          const { data } = await signUp(formData);
+          dispatch(authSuccess(data));
+        } catch (error: any) {
+          console.log(error.response.data);
+          dispatch(authFail(error.response.data));
+        }
+      } else setConfirmPass(false);
+    } else {
+      dispatch(authStart());
+      try {
+        const { data } = await logIn(formData);
+        dispatch(authSuccess(data));
+      } catch (error: any) {
+        console.log(error.response.data);
+        dispatch(authFail(error.response.data));
+      }
     }
-    // else {
-    //   dispatch(logIn(data, navigate));
-    // }
   };
 
   return (
@@ -58,53 +76,66 @@ const Auth = () => {
       <div className="auth-right">
         <form className="auth-form" onSubmit={handleSubmit}>
           <h3>{isSignUp ? "Sign Up" : "Log In"}</h3>
+          <div>
+            {isSignUp ? (
+              <>
+                <CustomInput
+                  type="text"
+                  placeholder="Full Name"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  required={true}
+                />
+                <CustomInput
+                  type="text"
+                  placeholder="Username"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleChange}
+                  required={true}
+                />
+              </>
+            ) : (
+              <CustomInput
+                type="text"
+                placeholder="Username or Email"
+                name="username"
+                value={formData.username}
+                onChange={handleChange}
+                required={true}
+              />
+            )}
+          </div>
           {isSignUp && (
             <div>
-              <input
-                type="text"
-                placeholder="First Name"
-                className="auth-input"
-                name="firstName"
-                value={data.firstName}
+              <CustomInput
+                type="email"
+                placeholder="Email"
+                name="email"
+                value={formData.email}
                 onChange={handleChange}
-              />
-              <input
-                type="text"
-                placeholder="Last Name"
-                className="auth-input"
-                name="lastName"
-                value={data.lastName}
-                onChange={handleChange}
+                required={true}
               />
             </div>
           )}
           <div>
-            <input
-              type="text"
-              className="auth-input"
-              name="username"
-              placeholder="Usernames"
-              value={data.username}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <input
+            <CustomInput
               type="password"
-              className="auth-input"
-              name="password"
               placeholder="Password"
-              value={data.password}
+              name="password"
+              value={formData.password}
               onChange={handleChange}
+              required={true}
             />
             {isSignUp && (
-              <input
+              <CustomInput
                 type="password"
-                className="auth-input"
-                name="confirmPass"
                 placeholder="Confirm Password"
-                value={data.confirmPass}
+                name="confirmPass"
+                value={formData.confirmPass}
                 onChange={handleChange}
+                required={true}
               />
             )}
           </div>
@@ -119,6 +150,18 @@ const Auth = () => {
           >
             *Confirm password is not same
           </span>
+          {error && (
+            <span
+              style={{
+                color: "red",
+                fontSize: "20px",
+                alignSelf: "flex-center",
+                display: "block",
+              }}
+            >
+              {error}
+            </span>
+          )}
           <div>
             <span style={{ fontSize: "12px" }}>
               {isSignUp ? (
@@ -150,8 +193,8 @@ const Auth = () => {
               )}
             </span>
           </div>
-          <button className="button auth-button" type="submit">
-            {isSignUp ? "SignUp" : "Login"}
+          <button className="button auth-button" type="submit" disabled={loading}>
+            {loading ? "Loading..." : isSignUp ? "SignUp" : "Login"}
           </button>
         </form>
       </div>
