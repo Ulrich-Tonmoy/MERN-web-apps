@@ -1,0 +1,54 @@
+.inputBox {
+  position: relative;
+  width: 100%;
+}
+
+.inputBox input {
+  width: 90%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: var(--inputColor);
+  border-radius: 5px;
+  outline: none;
+  font-size: 1em;
+  transition: 0.5s;
+  padding: 10px;
+}
+
+input[type="email"] {
+  width: 95%;
+}
+
+.inputBox span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 10px;
+  pointer-events: none;
+  font-size: 1em;
+  color: rgba(0, 0, 0, 0.25);
+  text-transform: capitalize;
+  transition: 0.5s;
+}
+
+.inputBox input:valid ~ span,
+.inputBox input:focus ~ span {
+  color: #1d2b3a;
+  transform: translateX(10px) translateY(-7px);
+  font-size: 0.85em;
+  padding: 0 10px;
+  background: rgba(252, 166, 31, 1);
+}
+
+.inputBox input:valid,
+.inputBox input:focus {
+  border: 1px solid rgba(252, 166, 31, 1);
+}
+
+@media screen and (max-width: 1024px) {
+  .inputBox {
+    width: 80%;
+  }
+  input[type="email"] {
+    width: 90%;
+  }
+}
