@@ -4,6 +4,9 @@ import cors from "cors";
 import * as dotenv from "dotenv";
 import mongoose, { ConnectOptions } from "mongoose";
 
+import notFoundMiddleware from "./middleware/not-found";
+import errorHandlerMiddleware from "./middleware/error-handler";
+
 import { authRoutes, userRoutes, postRoutes } from "./routes";
 
 dotenv.config();
@@ -17,6 +20,9 @@ app.use(cors({ origin: "http://localhost:3000" }));
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/post", postRoutes);
+
+app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
 
 const options = {
   useNewUrlParser: true,
