@@ -5,12 +5,15 @@ import { AiOutlinePlayCircle, AiOutlineClose } from "react-icons/ai";
 import "./PostShare.css";
 import { ChangeEvent, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { uploadFail, uploadStart, uploadSuccess } from "@/feature/postSlice";
+import { post } from "@/apis/post";
 
 const PostShare = () => {
   const dispatch = useDispatch();
   const [image, setImage] = useState<File | null>(null);
   const [desc, setDesc] = useState<string>("");
   const imageRef = useRef<HTMLInputElement>(null);
+  const { postLoading, postError } = useSelector((store: any) => store.post);
   const { user } = useSelector((state: any) => state.auth.authData);
 
   const onImageChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -20,24 +23,26 @@ const PostShare = () => {
     }
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const newPost: any = {
-      userId: user._id,
-      desc,
-    };
+
+    const newPost = new FormData();
+    newPost.append("userId", user._id);
+    newPost.append("desc", desc);
     if (image) {
-      const data = new FormData();
       const filename = crypto.randomUUID() + image.name;
-      data.append("name", filename);
-      data.append("file", image);
-      newPost.image = data;
-      console.log(newPost);
-      try {
-        // dispatch(uploadImage(newPost));
-      } catch (error) {
-        console.log(error);
-      }
+      newPost.append("name", filename);
+      newPost.append("file", image);
+    }
+    try {
+      dispatch(uploadStart());
+      const { data } = await post(newPost);
+      dispatch(uploadSuccess(data));
+      setImage(null);
+      setDesc("");
+    } catch (error: any) {
+      console.log(error.response.data);
+      dispatch(uploadFail(error.response.data));
     }
   };
 
@@ -70,8 +75,12 @@ const PostShare = () => {
           <div className="option" style={{ color: "var(--schedule)" }}>
             <SlCalender /> Schedule
           </div>
-          <button className="button post-share__button" onClick={handleSubmit}>
-            Share
+          <button
+            className="button post-share__button"
+            onClick={handleSubmit}
+            disabled={postLoading || (!image && !desc)}
+          >
+            {postLoading ? "Uploading..." : "Share"}
           </button>
           <div style={{ display: "none" }}>
             <input type="file" name="img" ref={imageRef} onChange={onImageChange} />

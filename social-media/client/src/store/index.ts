@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "../feature/authSlice";
+import postReducer from "../feature/postSlice";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
 
 const saveToLocalStorage = (store: any) => {
@@ -27,6 +28,7 @@ const persistedState = loadFromLocalStorage();
 const store = configureStore({
   reducer: {
     auth: authReducer,
+    post: postReducer,
   },
   preloadedState: persistedState,
   devTools: true,
