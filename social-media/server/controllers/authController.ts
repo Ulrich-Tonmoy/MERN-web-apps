@@ -32,10 +32,10 @@ export const login = async (req: Request, res: Response) => {
   const { username, password } = req.body;
   try {
     let user;
-    if (username) {
+    if (!user && username) {
       user = await UserModel.findOne({ username: username });
     }
-    if (username) {
+    if (!user && username) {
       user = await UserModel.findOne({ email: username });
     }
 

@@ -11,12 +11,19 @@ export const getAllUsers = async (req: Request, res: Response) => {
   }
 };
 
-export const getUserById = async (req: Request, res: Response) => {
+export const getUser = async (req: Request, res: Response) => {
   const id = req.params.id;
 
   try {
-    const user: any = await UserModel.findById(id);
+    let user;
+    if (!user) {
+      user = await UserModel.findOne({ username: id });
+    }
+    if (!user) {
+      user = await UserModel.findById(id);
+    }
 
+    console.log(user);
     if (user) {
       const { password, ...otherDetails } = user._doc;
       res.status(200).json({ response: otherDetails });
@@ -30,7 +37,12 @@ export const getUserById = async (req: Request, res: Response) => {
 
 export const updateUser = async (req: Request, res: Response) => {
   const id = req.params.id;
-  const { password } = req.body;
+  const { password, username } = req.body;
+
+  const usernameAlreadyExists = await UserModel.findOne({ username });
+  if (usernameAlreadyExists) {
+    return res.status(400).json("UserName already exists");
+  }
 
   if (await UserModel.findById(id)) {
     try {
