@@ -16,7 +16,7 @@ const postSlice = createSlice({
   name: "post",
   initialState,
   reducers: {
-    uploadStart(state) {
+    postApiStart(state) {
       state.postLoading = true;
       state.postError = "";
     },
@@ -25,13 +25,19 @@ const postSlice = createSlice({
       state.postLoading = false;
       state.postError = "";
     },
-    uploadFail(state, action: PayloadAction<string>) {
+    getTimelinePostSuccess(state, action: PayloadAction<any>) {
+      state.posts = action.payload;
+      state.postLoading = false;
+      state.postError = "";
+    },
+    postApiFail(state, action: PayloadAction<string>) {
       state.postLoading = false;
       state.postError = action.payload;
     },
   },
 });
 
-export const { uploadStart, uploadSuccess, uploadFail } = postSlice.actions;
+export const { postApiStart, uploadSuccess, getTimelinePostSuccess, postApiFail } =
+  postSlice.actions;
 
 export default postSlice.reducer;

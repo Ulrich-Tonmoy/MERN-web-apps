@@ -5,7 +5,7 @@ import { AiOutlinePlayCircle, AiOutlineClose } from "react-icons/ai";
 import "./PostShare.css";
 import { ChangeEvent, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { uploadFail, uploadStart, uploadSuccess } from "@/feature/postSlice";
+import { postApiStart, postApiFail, uploadSuccess } from "@/feature/postSlice";
 import { post } from "@/apis/post";
 
 const PostShare = () => {
@@ -35,14 +35,14 @@ const PostShare = () => {
       newPost.append("file", image);
     }
     try {
-      dispatch(uploadStart());
+      dispatch(postApiStart());
       const { data } = await post(newPost);
       dispatch(uploadSuccess(data));
       setImage(null);
       setDesc("");
     } catch (error: any) {
       console.log(error.response.data);
-      dispatch(uploadFail(error.response.data));
+      dispatch(postApiFail(error.response.data));
     }
   };
 
