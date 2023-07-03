@@ -2,6 +2,7 @@ import { AiFillHome, AiOutlineBell, AiOutlineMessage, AiOutlineSetting } from "r
 import "./RightSection.css";
 import { useState } from "react";
 import { ShareModal, TrendCard } from "@/components";
+import { Link } from "react-router-dom";
 
 const RightSection = () => {
   const [modalOpened, setModalOpened] = useState<Boolean>(false);
@@ -9,7 +10,9 @@ const RightSection = () => {
   return (
     <div className="right-section">
       <div className="nav-icons">
-        <AiFillHome className="nav-icon" style={{ color: "#f99827" }} />
+        <Link to="/">
+          <AiFillHome className="nav-icon" style={{ color: "#f99827" }} />
+        </Link>
         <AiOutlineSetting className="nav-icon" />
         <AiOutlineBell className="nav-icon" />
         <AiOutlineMessage className="nav-icon" />

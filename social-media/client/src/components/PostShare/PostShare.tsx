@@ -48,7 +48,14 @@ const PostShare = () => {
 
   return (
     <div className="post-share">
-      <img src="/profile-default.png" alt="profile" />
+      <img
+        src={
+          user.profilePicture
+            ? import.meta.env.VITE_PUBLIC_FOLDER + user.profilePicture
+            : "/profile-default.png"
+        }
+        alt="profile"
+      />
       <div>
         <textarea
           name="desc"

@@ -1,43 +1,63 @@
+import { useSelector } from "react-redux";
 import "./ProfileCard.css";
+import { Link, useLocation } from "react-router-dom";
 
 const ProfileCard = () => {
-  const ProfilePage = true;
+  const { user } = useSelector((state: any) => state.auth.authData);
+  const { posts } = useSelector((state: any) => state.post);
+  const imageServer = import.meta.env.VITE_PUBLIC_FOLDER;
+
+  const path = useLocation().pathname;
 
   return (
     <div className="profile-card">
       <div className="profile-images">
-        <img src="/cover-default.png" alt="cover" />
-        <img src="/profile-default.png" alt="profile" />
+        <img
+          src={user.coverPicture ? imageServer + user.coverPicture : "/cover-default.png"}
+          alt="cover"
+        />
+        <img
+          src={user.profilePicture ? imageServer + user.profilePicture : "/profile-default.png"}
+          alt="profile"
+        />
       </div>
       <div className="profile-name">
-        <span>Ulrich Tonmoy</span>
-        <span>MERN Stack Developer</span>
+        <span>{user.fullName}</span>
+        <span>{user?.worksAt ?? "Write about yourself."}</span>
       </div>
       <div className="follow-status">
         <hr />
         <div>
           <div className="follow">
-            <span>5,987</span>
+            <span>{user.followers.length}</span>
             <span>Followers</span>
           </div>
           <div className="vl"></div>
           <div className="follow">
-            <span>550</span>
+            <span>{user.followings.length}</span>
             <span>Followings</span>
           </div>
-          {ProfilePage && (
+          {path !== "/" && (
             <>
               <div className="vl"></div>
               <div className="follow">
-                <span>3</span>
-                <span>Posts</span>
+                <span>{posts.filter((p: any) => p.userId === user._id).length}</span>
+                <span>
+                  {posts.filter((p: any) => p.userId === user._id).length < 2 ? "Post" : "Posts"}
+                </span>
               </div>
             </>
           )}
         </div>
         <hr />
       </div>
-      {ProfilePage ? "" : <span>My Profile</span>}
+      {path !== "/" ? (
+        ""
+      ) : (
+        <span>
+          <Link to={`profile/${user._id}`}>My Profile</Link>
+        </span>
+      )}
     </div>
   );
 };

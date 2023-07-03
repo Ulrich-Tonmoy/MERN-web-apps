@@ -16,6 +16,11 @@
   cursor: pointer;
 }
 
+.profile-card > span > a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .profile-images {
   position: relative;
   display: flex;

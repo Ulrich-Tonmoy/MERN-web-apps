@@ -10,7 +10,8 @@
   justify-content: space-between;
 }
 
-.nav-icons > svg {
+.nav-icons > svg,
+.nav-icons > a > svg {
   width: 1.5rem;
   height: 1.5rem;
   padding: 10px;
