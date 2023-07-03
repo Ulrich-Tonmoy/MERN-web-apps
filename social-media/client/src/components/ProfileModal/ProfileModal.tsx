@@ -1,3 +1,4 @@
+import "./ProfileModal.css";
 import { Modal, useMantineTheme } from "@mantine/core";
 
 const ProfileModal = ({ modalOpened, setModalOpened }: any) => {
@@ -18,8 +19,8 @@ const ProfileModal = ({ modalOpened, setModalOpened }: any) => {
       <form className="info-form">
         <h3>Your info</h3>
         <div>
-          <input type="text" className="info-input" name="FirstName" placeholder="First Name" />
-          <input type="text" className="info-input" name="LastName" placeholder="Last Name" />
+          <input type="text" className="info-input" name="fullName" placeholder="Full Name" />
+          <input type="text" className="info-input" name="userName" placeholder="User Name" />
         </div>
         <div>
           <input type="text" className="info-input" name="worksAT" placeholder="Works at" />

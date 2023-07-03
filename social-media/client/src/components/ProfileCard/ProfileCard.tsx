@@ -55,7 +55,7 @@ const ProfileCard = () => {
         ""
       ) : (
         <span>
-          <Link to={`profile/${user._id}`}>My Profile</Link>
+          <Link to={`/profile/${user._id}`}>My Profile</Link>
         </span>
       )}
     </div>
