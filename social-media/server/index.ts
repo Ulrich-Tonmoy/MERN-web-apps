@@ -7,7 +7,7 @@ import mongoose, { ConnectOptions } from "mongoose";
 import notFoundMiddleware from "./middleware/not-found";
 import errorHandlerMiddleware from "./middleware/error-handler";
 
-import { authRoutes, userRoutes, postRoutes } from "./routes";
+import { authRoutes, userRoutes, postRoutes, uploadRoute } from "./routes";
 
 dotenv.config();
 const app = express();
@@ -23,6 +23,7 @@ app.use(cors({ origin: "http://localhost:3000" }));
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/posts", postRoutes);
+app.use("/api/v1/upload", uploadRoute);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);

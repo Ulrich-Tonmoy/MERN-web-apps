@@ -23,7 +23,7 @@ const InfoCard = () => {
 
   useEffect(() => {
     (async () => {
-      if (params.id === user._id) setUserProfile(user);
+      if (params.id === user.username || params.id === user._id) setUserProfile(user);
       else {
         const profile = await getUser(params.id);
         setUserProfile(profile);
@@ -35,13 +35,13 @@ const InfoCard = () => {
     <div className="info-card">
       <div className="info-head">
         <h4>Profile Info</h4>
-        {params.id === user._id && (
+        {(params.id === user.username || params.id === user._id) && (
           <div>
             <AiOutlineEdit
               style={{ width: "2rem", height: "1.5rem" }}
               onClick={() => setModalOpened(true)}
             />
-            <ProfileModal modalOpened={modalOpened} setModalOpened={setModalOpened} />
+            <ProfileModal modalOpened={modalOpened} setModalOpened={setModalOpened} user={user} />
           </div>
         )}
       </div>
@@ -63,7 +63,7 @@ const InfoCard = () => {
         </span>
         <span>{userProfile?.worksAt ?? "Not available."}</span>
       </div>
-      {params.id === user._id && (
+      {(params.id === user.username || params.id === user._id) && (
         <button className="button logout-button" onClick={handleLogout}>
           Logout
         </button>
