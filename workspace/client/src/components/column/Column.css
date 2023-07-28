@@ -1,0 +1,19 @@
+.column__container {
+    margin: 8px;
+    border: 1px solid black;
+    border-radius: 2px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
+    background-color: white;
+}
+
+.column__title {
+    padding: 5px;
+}
+
+.column__task-list {
+    padding: 8px;
+}
