@@ -55,16 +55,18 @@ const authSlice = createSlice({
       state.error = "";
       state.updateLoading = false;
     },
+
     followUser(state, action: PayloadAction<string>) {
       if (state.authData) {
-        state.authData.user.following.push(action.payload);
+        state.authData.user.followings.push(action.payload);
       }
     },
+
     unFollowUser(state, action: PayloadAction<string>) {
       if (state.authData) {
-        const index = state.authData.user.following.indexOf(action.payload);
+        const index = state.authData.user.followings.indexOf(action.payload);
         if (index !== -1) {
-          state.authData.user.following.splice(index, 1);
+          state.authData.user.followings.splice(index, 1);
         }
       }
     },

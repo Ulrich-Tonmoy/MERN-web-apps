@@ -13,5 +13,6 @@ API.interceptors.request.use((req) => {
 export const getUser = (userId: any) => API.get(`/user/${userId}`);
 export const updateUser = (id: any, formData: any) => API.put(`/user/${id}`, formData);
 export const getAllUser = () => API.get("/user");
-export const followUser = (id: any, data: any) => API.put(`/user/follow/${id}`, data);
-export const unFollowUser = (id: any, data: any) => API.put(`/user/un-follow/${id}`, data);
+export const followUser = (id: any, data: any) => API.put(`/user/follow/${id}`, { userId: data });
+export const unFollowUser = (id: any, data: any) =>
+  API.put(`/user/un-follow/${id}`, { userId: data });

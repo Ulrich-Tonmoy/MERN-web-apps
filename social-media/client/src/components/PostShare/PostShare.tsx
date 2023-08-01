@@ -13,7 +13,7 @@ const PostShare = () => {
   const [image, setImage] = useState<File | null>(null);
   const [desc, setDesc] = useState<string>("");
   const imageRef = useRef<HTMLInputElement>(null);
-  const { postLoading, postError } = useSelector((store: any) => store.post);
+  const { postLoading } = useSelector((store: any) => store.post);
   const { user } = useSelector((state: any) => state.auth.authData);
 
   const onImageChange = (event: ChangeEvent<HTMLInputElement>): void => {

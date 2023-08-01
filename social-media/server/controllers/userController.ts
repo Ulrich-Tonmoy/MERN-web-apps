@@ -5,7 +5,11 @@ import { createJWT } from "../utils/jwt";
 
 export const getAllUsers = async (req: Request, res: Response) => {
   try {
-    const users: any = await UserModel.find();
+    let users: any = await UserModel.find();
+    users = users.map((user) => {
+      const { password, ...other } = user._doc;
+      return other;
+    });
     res.status(200).json(users);
   } catch (error) {
     res.status(500).json(error.message);

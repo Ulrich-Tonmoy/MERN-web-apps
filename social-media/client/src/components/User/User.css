@@ -1,0 +1,46 @@
+.user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user > div {
+  display: flex;
+  gap: 10px;
+}
+
+.user-img {
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+}
+
+.name {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.name > span:nth-of-type(1) {
+  font-weight: bold;
+}
+
+.follow-button {
+  height: 2rem;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.un-follow-button {
+  color: var(--orange) !important;
+  border: 2px solid var(--orange) !important;
+  background: transparent !important;
+  transition: all 100ms ease-out;
+}
+
+.un-follow-button:hover {
+  color: white !important;
+  background: var(--buttonBg) !important;
+  border: none;
+}

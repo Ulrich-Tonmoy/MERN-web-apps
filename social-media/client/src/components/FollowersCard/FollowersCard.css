@@ -6,37 +6,3 @@
   flex-direction: column;
   font-size: 13px;
 }
-
-.follower {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.follower > div {
-  display: flex;
-  gap: 10px;
-}
-
-.follower-img {
-  width: 3.2rem;
-  height: 3.2rem;
-  border-radius: 50%;
-}
-
-.name {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-}
-
-.name > span:nth-of-type(1) {
-  font-weight: bold;
-}
-
-.follow-button {
-  height: 2rem;
-  padding-left: 20px;
-  padding-right: 20px;
-}

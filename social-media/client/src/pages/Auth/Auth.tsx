@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import "./Auth.css";
 import { useState, ChangeEvent, SyntheticEvent } from "react";
 import CustomInput from "@/components/CustomInput/CustomInput";
@@ -23,7 +22,6 @@ const Auth = () => {
     confirmPass: "",
   };
   const { loading, error } = useSelector((store: any) => store.auth);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isSignUp, setIsSignUp] = useState(false);
   const [confirmPass, setConfirmPass] = useState(true);

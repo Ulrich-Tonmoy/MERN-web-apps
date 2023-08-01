@@ -11,3 +11,4 @@ export { default as ProfileLeft } from "@/components/ProfileLeft/ProfileLeft";
 export { default as InfoCard } from "@/components/InfoCard/InfoCard";
 export { default as ProfileModal } from "@/components/ProfileModal/ProfileModal";
 export { default as ShareModal } from "@/components/ShareModal/ShareModal";
+export { default as User } from "@/components/User/User";
