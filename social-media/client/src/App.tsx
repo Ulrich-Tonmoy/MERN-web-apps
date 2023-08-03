@@ -4,7 +4,6 @@ import { Route, Routes, Navigate } from "react-router-dom";
 
 const App = () => {
   const user = useSelector((state: any) => state.auth.authData);
-  console.log(user);
 
   return (
     <div className="app">
