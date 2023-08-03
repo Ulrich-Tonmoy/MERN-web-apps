@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getTimelinePosts } from "@/apis/post";
 import { getTimelinePostSuccess, postApiFail, postApiStart } from "@/feature/postSlice";
+import { useParams } from "react-router-dom";
 
 const Posts = () => {
+  const params = useParams();
   const { user } = useSelector((state: any) => state.auth.authData);
-  const { posts, postLoading } = useSelector((state: any) => state.post);
+  let { posts, postLoading } = useSelector((state: any) => state.post);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,6 +25,10 @@ const Posts = () => {
       }
     })();
   }, []);
+
+  if (!posts) return "No Posts found.";
+
+  if (params.id) posts = posts.filter((post: any) => post.userId === user._id);
 
   return (
     <div className="posts">
