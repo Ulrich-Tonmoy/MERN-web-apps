@@ -1,3 +1,4 @@
+import { authHandler } from "../middleware/auth-handler";
 import {
   deleteUser,
   followUser,
@@ -12,9 +13,9 @@ const router = express.Router();
 
 router.get("/", getAllUsers);
 router.get("/:id", getUser);
-router.put("/:id", updateUser);
-router.delete("/:id", deleteUser);
-router.put("/follow/:id", followUser);
-router.put("/un-follow/:id", unFollowUser);
+router.put("/:id", authHandler, updateUser);
+router.delete("/:id", authHandler, deleteUser);
+router.put("/follow/:id", authHandler, followUser);
+router.put("/un-follow/:id", authHandler, unFollowUser);
 
 export default router;
