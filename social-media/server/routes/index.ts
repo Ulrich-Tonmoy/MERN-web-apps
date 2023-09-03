@@ -1,4 +1,6 @@
-export { default as authRoutes } from "./authRoutes";
-export { default as userRoutes } from "./userRoutes";
-export { default as postRoutes } from "./postRoutes";
+export { default as authRoute } from "./authRoute";
+export { default as userRoute } from "./userRoute";
+export { default as postRoute } from "./postRoute";
 export { default as uploadRoute } from "./uploadRoute";
+export { default as chatRoute } from "./chatRoute";
+export { default as messageRoute } from "./messageRoute";

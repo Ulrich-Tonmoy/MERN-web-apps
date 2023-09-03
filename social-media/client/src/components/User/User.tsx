@@ -3,9 +3,13 @@ import "./User.css";
 import { useState } from "react";
 import { followUser, unFollowUser } from "@/apis/user";
 import { unFollowUser as unFollow, followUser as follow } from "@/feature/authSlice";
+import { AiOutlineMessage } from "react-icons/ai";
+import { createChat, findChat } from "@/apis/chat";
+import { useNavigate } from "react-router-dom";
 
 const User = ({ user }: any) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const loggedUser = useSelector((state: any) => state.auth.authData);
   const [following, setFollowing] = useState<boolean>(user.followers.includes(loggedUser.user._id));
 
@@ -18,6 +22,12 @@ const User = ({ user }: any) => {
       dispatch(follow(user._id));
     }
     setFollowing((prev) => !prev);
+  };
+
+  const sendMessage = async () => {
+    const { data } = await findChat(loggedUser.user._id, user._id);
+    if (!data) await createChat({ senderId: loggedUser.user._id, receiverId: user._id });
+    return navigate("/chat");
   };
 
   return (
@@ -42,6 +52,9 @@ const User = ({ user }: any) => {
         onClick={handleFollow}
       >
         {following ? "Following" : "Follow"}
+      </button>
+      <button className={`button msg-button`} onClick={() => sendMessage()}>
+        <AiOutlineMessage />
       </button>
     </div>
   );

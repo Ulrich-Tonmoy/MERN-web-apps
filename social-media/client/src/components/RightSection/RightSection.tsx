@@ -15,7 +15,9 @@ const RightSection = () => {
         </Link>
         <AiOutlineSetting className="nav-icon" />
         <AiOutlineBell className="nav-icon" />
-        <AiOutlineMessage className="nav-icon" />
+        <Link to="/chat">
+          <AiOutlineMessage className="nav-icon" />
+        </Link>
       </div>
       <TrendCard />
       <button className="button right-button" onClick={() => setModalOpened(true)}>
