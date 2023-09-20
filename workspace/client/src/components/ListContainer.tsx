@@ -26,21 +26,15 @@ const ListContainer = ({
   updateTask,
 }: ListContainerProps) => {
   const [editMode, setEditMode] = useState(false);
-  const {
-    setNodeRef,
-    attributes,
-    listeners,
-    transform,
-    transition,
-    isDragging,
-  } = useSortable({
-    id: list.id,
-    data: {
-      type: "List",
-      list,
-    },
-    disabled: editMode,
-  });
+  const { setNodeRef, attributes, listeners, transform, transition, isDragging } =
+    useSortable({
+      id: list.id,
+      data: {
+        type: "List",
+        list,
+      },
+      disabled: editMode,
+    });
 
   const style = {
     transition,

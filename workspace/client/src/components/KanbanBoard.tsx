@@ -42,8 +42,8 @@ const KanbanBoard = () => {
   };
 
   const deleteList = (id: Id) => {
-    const filteredCol = lists.filter((list) => list.id !== id);
-    setLists(filteredCol);
+    const filteredLists = lists.filter((list) => list.id !== id);
+    setLists(filteredLists);
 
     const filteredTask = tasks.filter((task) => task.listId !== id);
     setTasks(filteredTask);
@@ -92,10 +92,12 @@ const KanbanBoard = () => {
   const onDragStart = (e: DragStartEvent) => {
     if (e.active.data.current?.type === "List") {
       setActiveList(e.active.data.current.list);
+      return;
     }
 
     if (e.active.data.current?.type === "Task") {
       setActiveTask(e.active.data.current.task);
+      return;
     }
   };
 
@@ -106,28 +108,36 @@ const KanbanBoard = () => {
 
     if (active.id === over.id) return;
 
-    const isActiveTask = active.data.current?.type === "Task";
-    const isOverTask = over.data.current?.type === "Task";
+    const isActiveATask = active.data.current?.type === "Task";
+    const isOverATask = over.data.current?.type === "Task";
 
-    if (!isActiveTask) return;
+    if (!isActiveATask) return;
 
-    const activeIndex = tasks.findIndex((task) => task.id === active.id);
-    const overIndex = tasks.findIndex((task) => task.id === over.id);
-    if (isActiveTask && isOverTask) {
-      setTasks((task) => {
-        tasks[activeIndex].listId = tasks[overIndex].listId;
-        return arrayMove(task, activeIndex, overIndex);
+    // dropping a Task over another Task
+    if (isActiveATask && isOverATask) {
+      setTasks((tasks) => {
+        const activeIndex = tasks.findIndex((t) => t.id === active.id);
+        const overIndex = tasks.findIndex((t) => t.id === over.id);
+
+        if (tasks[activeIndex].listId != tasks[overIndex].listId) {
+          // Fix introduced after video recording
+          tasks[activeIndex].listId = tasks[overIndex].listId;
+          return arrayMove(tasks, activeIndex, overIndex - 1);
+        }
+
+        return arrayMove(tasks, activeIndex, overIndex);
       });
     }
 
-    if (isActiveTask && !isOverTask) {
-      setTasks((task) => {
-        lists.filter((list) => list.id === tasks[activeIndex].listId)[0]
-          .count--;
+    const isOverAColumn = over.data.current?.type === "Column";
+
+    // dropping a Task over a column
+    if (isActiveATask && isOverAColumn) {
+      setTasks((tasks) => {
+        const activeIndex = tasks.findIndex((t) => t.id === active.id);
+
         tasks[activeIndex].listId = over.id;
-        lists.filter((list) => list.id === over.id)[0].count++;
-        setLists(lists);
-        return arrayMove(task, activeIndex, activeIndex);
+        return arrayMove(tasks, activeIndex, activeIndex);
       });
     }
   };
@@ -137,18 +147,34 @@ const KanbanBoard = () => {
     setActiveTask(null);
 
     const { active, over } = e;
-
     if (!over) return;
 
     if (active.id === over.id) return;
 
-    setLists((prev) => {
-      const activeIndex = lists.findIndex((list) => list.id === active.id);
-      const overIndex = lists.findIndex((list) => list.id === over.id);
+    const isActiveAList = active.data.current?.type === "List";
+    if (!isActiveAList) return;
 
-      return arrayMove(prev, activeIndex, overIndex);
+    setLists((lists) => {
+      const activeListIndex = lists.findIndex((col) => col.id === active.id);
+
+      const overListIndex = lists.findIndex((col) => col.id === over.id);
+
+      return arrayMove(lists, activeListIndex, overListIndex);
     });
+    console.log(lists, "<=>", tasks);
   };
+
+  // useEffect(() => {
+  //   (async () => {
+  //     const response = await fetch("http://localhost:8000/board");
+  //     const data = await response.json();
+  //     setBoard(data.board);
+  //   })();
+  // }, []);
+
+  // if (!board) {
+  //   return <>No board found</>;
+  // }
 
   return (
     <>
@@ -168,7 +194,7 @@ const KanbanBoard = () => {
           <div className="flex gap-4">
             <div className="flex gap-4">
               <SortableContext items={listsId}>
-                {lists.map((list: List, i: number) => (
+                {lists.map((list, i: number) => (
                   <ListContainer
                     key={i}
                     list={list}

@@ -23,6 +23,7 @@ body,
 
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(to right, #0d1117 0%, #161c22 100%);
+  border: 1px solid #8080801e;
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -32,6 +33,7 @@ body,
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to left, #0d1117 0%, #161c22 100%);
+  border: 1px solid grey;
 }
 
 .task > ::-webkit-scrollbar-thumb {
