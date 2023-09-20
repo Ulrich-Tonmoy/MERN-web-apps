@@ -41,6 +41,8 @@ const ListContainer = ({
     transform: CSS.Transform.toString(transform),
   };
 
+  console.log(list);
+
   const taskIds = useMemo(() => {
     return tasks.map((task: Task) => task.id);
   }, [tasks]);

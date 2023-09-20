@@ -13,6 +13,7 @@ export type List = {
   id: Id;
   title: string;
   count: number;
+  tasksOrder: Array<string>;
 };
 
 export type Task = {
@@ -20,4 +21,9 @@ export type Task = {
   listId: Id;
   priority: Priority;
   content: string;
+};
+
+export type Board = {
+  id: Id;
+  listsOrder: Array<string>;
 };

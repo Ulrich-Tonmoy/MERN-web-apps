@@ -1,6 +1,6 @@
 import PlusIcon from "@icons/PlusIcon";
-import { List, Id, Task, Priority } from "@utils/types";
-import { useMemo, useState } from "react";
+import { List, Id, Task, Priority, Board } from "@utils/types";
+import { useState, useEffect } from "react";
 import ListContainer from "./ListContainer";
 import {
   DndContext,
@@ -17,12 +17,12 @@ import { createPortal } from "react-dom";
 import TaskCard from "./TaskCard";
 
 const KanbanBoard = () => {
+  const [board, setBoard] = useState<Board[]>([]);
   const [lists, setLists] = useState<List[]>([]);
   const [activeList, setActiveList] = useState<List | null>(null);
   const [tasks, setTasks] = useState<Task[]>([]);
   const [activeTask, setActiveTask] = useState<Task | null>(null);
 
-  const listsId = useMemo(() => lists.map((list) => list.id), [lists]);
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -35,6 +35,7 @@ const KanbanBoard = () => {
     const listToAdd: List = {
       id: crypto.randomUUID(),
       title: `List ${lists.length + 1}`,
+      tasksOrder: [],
       count: 0,
     };
 
@@ -164,17 +165,19 @@ const KanbanBoard = () => {
     console.log(lists, "<=>", tasks);
   };
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const response = await fetch("http://localhost:8000/board");
-  //     const data = await response.json();
-  //     setBoard(data.board);
-  //   })();
-  // }, []);
+  useEffect(() => {
+    (async () => {
+      const response = await fetch("http://localhost:8000/board");
+      const data = await response.json();
+      setLists(data.lists);
+      setTasks(data.tasks);
+      setBoard(data.boards);
+    })();
+  }, []);
 
-  // if (!board) {
-  //   return <>No board found</>;
-  // }
+  if (!board) {
+    return <>No board found</>;
+  }
 
   return (
     <>
@@ -193,20 +196,22 @@ const KanbanBoard = () => {
         >
           <div className="flex gap-4">
             <div className="flex gap-4">
-              <SortableContext items={listsId}>
-                {lists.map((list, i: number) => (
-                  <ListContainer
-                    key={i}
-                    list={list}
-                    deleteList={deleteList}
-                    updateList={updateList}
-                    tasks={tasks.filter((task) => task.listId === list.id)}
-                    createTask={createTask}
-                    deleteTask={deleteTask}
-                    updateTask={updateTask}
-                  />
-                ))}
-              </SortableContext>
+              {board[0] && (
+                <SortableContext items={board[0].listsOrder}>
+                  {lists.map((list, i: number) => (
+                    <ListContainer
+                      key={i}
+                      list={list}
+                      deleteList={deleteList}
+                      updateList={updateList}
+                      tasks={tasks.filter((task) => task.listId === list.id)}
+                      createTask={createTask}
+                      deleteTask={deleteTask}
+                      updateTask={updateTask}
+                    />
+                  ))}
+                </SortableContext>
+              )}
             </div>
           </div>
           {createPortal(
